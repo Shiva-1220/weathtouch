@@ -21,16 +21,17 @@ It fetches real-time weather updates using the **Open-Meteo API** and provides a
 
 ---
 
-## 📸 Screenshots  
+## 📸 Screenshots
 
 ### 🏠 Home Page  
-![Home Page](./assets/screenshots/home.png)
+![Home Page](assets/screenshots/home.png)
 
 ### 🌤️ Weather Forecast Example  
-![Forecast Example](./assets/screenshots/forecast.png)
+![Forecast Example](assets/screenshots/forecast.png)
 
 ### ⚠️ Error Handling  
-![Error Example](./assets/screenshots/error.png)
+![Error Example](assets/screenshots/error.png)
+
 
 ---
 
