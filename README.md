@@ -43,7 +43,7 @@ Results are displayed in card format with weather icons.
 
 Clone this repository:
 
-git clone https://github.com/your-username/weather-forecast-app.git
+git clone git@github.com:Shiva-1220/weathtouch.git
 
 
 Open the project folder and run it with Live Server in VS Code or simply open index.html in a browser.
