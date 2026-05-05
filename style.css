@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* BASE STYLES */
 :root {
   --bg-color: #f0f4f8;
@@ -253,4 +254,259 @@ body {
   .hero-main h1 { font-size: 4rem; }
   .insights-row { grid-template-columns: 1fr; }
   .chat-window { width: calc(100vw - 4rem); max-width: 360px; right: -1rem; }
+=======
+/* Background gradient + animated clouds */
+/* ---- FLUFFY CLOUDS ---- */
+/* make sure the clouds sit behind the UI */
+.cloud {
+  position: fixed;
+  left: -30vw;                 /* start off-screen to the left */
+  background: #ffffff;
+  border-radius: 50%;
+  opacity: 0.9;
+  z-index: 1;                  /* behind main container (we'll set container z-index higher) */
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+  pointer-events: none;
+  transform: translateZ(0);
+  animation-name: moveClouds;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+/* small cloud shape (uses ::before and ::after for extra circles) */
+.cloud.small {
+  width: 120px;
+  height: 44px;
+}
+.cloud.small::before {
+  content: "";
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  top: -30px;
+  left: 14px;
+  background: inherit;
+}
+.cloud.small::after {
+  content: "";
+  position: absolute;
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  top: -20px;
+  left: 56px;
+  background: inherit;
+}
+
+/* medium cloud */
+.cloud.medium {
+  width: 180px;
+  height: 60px;
+}
+.cloud.medium::before {
+  content: "";
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  top: -40px;
+  left: 22px;
+  background: inherit;
+}
+.cloud.medium::after {
+  content: "";
+  position: absolute;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  top: -28px;
+  left: 84px;
+  background: inherit;
+}
+
+/* large cloud */
+.cloud.large {
+  width: 260px;
+  height: 80px;
+}
+.cloud.large::before {
+  content: "";
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  top: -60px;
+  left: 28px;
+  background: inherit;
+}
+.cloud.large::after {
+  content: "";
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  top: -48px;
+  left: 120px;
+  background: inherit;
+}
+
+/* different speeds & delays so they don't move uniformly */
+.cloud.small { animation-duration: 60s; animation-delay: -10s; opacity: 0.85; }
+.cloud.medium { animation-duration: 95s; animation-delay: -30s; opacity: 0.9; }
+.cloud.large { animation-duration: 135s; animation-delay: -50s; opacity: 0.92; }
+
+/* the animation moves clouds from left to right (use translateX for smooth GPU animation) */
+@keyframes moveClouds {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(160vw); } /* move far to the right off-screen */
+}
+
+/* Ensure the weather container sits above clouds */
+.weather-container {
+  position: relative;
+  z-index: 5; /* higher than clouds */
+}
+
+body {
+  font-family: "Poppins", Arial, sans-serif;
+  background: linear-gradient(to right, #2193b0, #6dd5ed);
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  color: #333;
+  overflow-x: hidden;
+}
+
+/* Floating clouds */
+body::before, body::after {
+  content: "";
+  position: absolute;
+  top: 50px;
+  width: 200px;
+  height: 80px;
+  background: #fff;
+  border-radius: 50%;
+  opacity: 0.4;
+  animation: moveClouds 60s linear infinite;
+}
+
+body::after {
+  top: 150px;
+  width: 300px;
+  height: 100px;
+  animation-duration: 100s;
+}
+
+@keyframes moveClouds {
+  0% { left: -400px; }
+  100% { left: 100%; }
+}
+
+/* Container */
+.weather-container {
+  margin-top: 40px;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 25px;
+  border-radius: 25px;
+  backdrop-filter: blur(15px);
+  display: inline-block;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  color: white;
+  animation: fadeIn 1.5s ease;
+}
+
+/* Title */
+.weather-container h2 {
+  font-size: 28px;
+  margin-bottom: 15px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+}
+
+/* Input + Button */
+input {
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  margin: 10px;
+  width: 230px;
+  font-size: 16px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+}
+
+button {
+  padding: 12px 20px;
+  border: none;
+  background: linear-gradient(45deg, #ff9800, #ff5722);
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: linear-gradient(45deg, #ffb300, #f44336);
+  transform: scale(1.05);
+}
+
+/* Forecast cards */
+.forecast {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+  margin-top: 25px;
+}
+
+.day {
+  background: rgba(255, 255, 255, 0.9);
+  color: #333;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+  width: 180px;
+  transition: 0.3s ease-in-out;
+  text-align: center;
+  animation: fadeUp 1s ease forwards;
+  opacity: 0;
+}
+
+.day:hover {
+  transform: translateY(-12px) scale(1.05);
+  background: #ffffff;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Date */
+.day h4 {
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #007BFF;
+}
+
+/* Weather Icon */
+.day p:first-of-type {
+  font-size: 32px;
+  margin: 10px 0;
+}
+
+/* Sunrise/Sunset */
+.day p:last-of-type {
+  font-size: 14px;
+  color: #555;
+>>>>>>> d96626e0588d1b386b0a99cb254f4a5dae432003
 }
