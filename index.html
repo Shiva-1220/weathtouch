@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WeatherTouch | AI Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <!-- Header Section -->
+  <header class="top-nav">
+    <div class="logo">Weather<span>Touch</span></div>
+    
+    <div class="search-container">
+      <div class="search-box">
+        <input type="text" id="city-input" placeholder="Search city (e.g. New York)..." autocomplete="off">
+        <button id="search-btn">Search</button>
+      </div>
+      <div id="suggestions" class="suggestions-dropdown hidden"></div>
+    </div>
+
+    <div class="nav-right">
+      <div id="current-time" class="time-display">00:00</div>
+      <button id="theme-toggle" class="icon-btn">🌓</button>
+    </div>
+  </header>
+
+  <!-- Main Dashboard -->
+  <main class="dashboard">
+    <section class="hero-card">
+      <div class="hero-main">
+        <div id="weather-icon" class="status-icon">☀️</div>
+        <h1 id="main-temp">--°C</h1>
+        <p id="weather-desc">Loading sky...</p>
+      </div>
+      <div class="hero-footer">
+        <h2 id="location-name">Detecting Location...</h2>
+        <p id="date-today">--</p>
+      </div>
+    </section>
+
+    <!-- Metrics Grid -->
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <span class="label">Humidity</span>
+        <span class="value" id="val-humidity">--%</span>
+      </div>
+      <div class="metric-card">
+        <span class="label">Wind Speed</span>
+        <span class="value" id="val-wind">-- km/h</span>
+      </div>
+      <div class="metric-card">
+        <span class="label">Pressure</span>
+        <span class="value" id="val-pressure">-- hPa</span>
+      </div>
+      <div class="metric-card">
+        <span class="label">UV Index</span>
+        <span class="value" id="val-uv">--</span>
+      </div>
+      <div class="metric-card highlight">
+        <span class="label">AQI</span>
+        <span class="value" id="val-aqi">--</span>
+        <span class="sub-label" id="aqi-status">--</span>
+      </div>
+      <div class="metric-card ai">
+        <span class="label">Rain Prob.</span>
+        <span class="value" id="val-rain">--%</span>
+      </div>
+    </div>
+
+    <!-- Charts & Insights -->
+    <div class="insights-row">
+      <div class="chart-container">
+        <h3>Temp Trend (Next 8 Hours)</h3>
+        <canvas id="tempChart"></canvas>
+      </div>
+      <div class="ai-insights">
+        <h3>AI Perspective</h3>
+        <div id="ai-insight-text" class="insight-content">
+          Gathering atmospheric data for AI analysis...
+        </div>
+      </div>
+    </div>
+
+    <!-- Weekly Forecast -->
+    <section class="forecast-section">
+      <h3>7-Day Outlook</h3>
+      <div id="forecast-grid" class="forecast-grid">
+        <!-- JS will populate cards -->
+      </div>
+    </section>
+  </main>
+
+  <!-- CHATBOT UI -->
+  <div id="chat-widget" class="chat-widget">
+    <button id="chat-launcher" class="chat-launcher" title="Ask AI Assistant">
+      <span class="icon">🤖</span>
+    </button>
+    
+    <div id="chat-window" class="chat-window hidden">
+      <div class="chat-header">
+        <div class="header-info">
+          <span class="bot-status"></span>
+          Assistant AI
+        </div>
+        <button id="close-chat" class="close-btn">&times;</button>
+      </div>
+      
+      <div id="chat-scroll" class="chat-scroll">
+        <div class="message bot">
+          Hi! I'm WeatherTouch AI. Ask me anything about the current weather or what to wear today!
+        </div>
+      </div>
+
+      <div id="typing-indicator" class="typing-indicator hidden">AI is thinking...</div>
+
+      <div class="chat-input-area">
+        <input type="text" id="chat-input" placeholder="Type a message..." autocomplete="off">
+        <button id="send-btn">Send</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
